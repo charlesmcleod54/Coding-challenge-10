@@ -88,3 +88,40 @@ class Inventory {
 inventory.placeOrder(464, prod1, 4);
 inventory.listOrders();
 console.log(prod1.getDetails());
+
+// Task 5: Implementing Product Restocking
+class Inventory {
+    constructor() {
+        this.products = [];
+        this.orders = [];
+    }
+    addProduct(product) {
+        this.products.push(product);
+    }
+    placeOrder(orderId, product, quantity) {
+        if (product.stock >= quantity) {
+            const order = new Order(orderId, product, quantity);
+            this.orders.push(order);
+            console.log(order.getOrderDetails());
+        } else {
+            console.log('Not enough stock available!');
+        }
+    }
+    listOrders() {
+        this.orders.forEach(order => {
+            console.log(order.getOrderDetails());
+        });
+    }
+    restockProduct(productId, quantity) {
+        const product = this.products.find(p => p.id === productId);
+        if (product) {
+            product.stock += quantity;
+        } else {
+            console.log('Product not found!');
+        }
+    }
+}
+
+// Test Case 5
+inventory.restockProduct(101, 5);
+console.log(prod1.getDetails());
