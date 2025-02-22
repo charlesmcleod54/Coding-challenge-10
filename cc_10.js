@@ -58,3 +58,33 @@ class Inventory {
 const Inventory = new Inventory();
 inventory.addProduct(prod1);
 inventory.listProducts();
+
+// Task 4: Implementing Order Management
+class Inventory {
+    constructor() {
+        this.products = [];
+        this.orders = [];
+    }
+    addProduct(product) {
+        this.products.push(product);
+    }
+    placeOrder(orderId, product, quantity) {
+        if (product.stock >= quantity) {
+            const order = new Order(orderId, product, quantity);
+            this.orders.push(order);
+            console.log(order.getOrderDetails());
+        } else {
+            console.log('Not enough stock available!');
+        }
+    }
+    listOrders() {
+        this.orders.forEach(order => {
+            console.log(order.getOrderDetails());
+        });
+    }
+}
+
+// Test Case 4
+inventory.placeOrder(464, prod1, 4);
+inventory.listOrders();
+console.log(prod1.getDetails());
